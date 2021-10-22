@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- Liste Pour les autres depenses -->
+<record id="tree_view_other" model="ir.ui.view">
+    <field name="name">other.expenses.tree</field>
+    <field name="model">other.expenses</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="intitule"/>
+            <field name="date_order"/>
+            <field name="qty"/>
+            <field name="amount"/>
+            <field name="sub_total" sum="Total"/>
+        </tree>
+    </field>
+</record>
+
+<!-- Actions pour les autres depenses -->
+<record id="action_tchop_et_yamo_other" model="ir.actions.act_window">
+    <field name="name">Autre Depenses</field>
+    <field name="res_model">other.expenses</field>
+    <field name="view_mode">tree,form</field>
+    <field name="view_ids" eval="[(5, 0, 0),
+        (0, 0, {'view_mode': 'tree', 'view_id': ref('tree_view_other')})]"/>
+</record>
+
+<!-- Vue liste Pour Les factures d'Eau -->
+<record id="tree_view_water" model="ir.ui.view">
+    <field name="name">purchase.water.tree</field>
+    <field name="model">purchase.water</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="intitule"/>
+            <field name="date_order"/>
+            <field name="qty"/>
+            <field name="amount"/>
+            <field name="sub_total" sum="Total"/>
+        </tree>
+    </field>
+</record>
+
+
+<!-- Actions pour les factures d'eau -->
+<record id="action_tchop_et_yamo_water" model="ir.actions.act_window">
+    <field name="name">EAU</field>
+    <field name="res_model">purchase.water</field>
+    <field name="view_mode">tree,form</field>
+    <field name="view_ids" eval="[(5, 0, 0),
+        (0, 0, {'view_mode': 'tree', 'view_id': ref('tree_view_water')})]"/>
+</record>
+
+
+
+<!-- Vue liste Pour Les factures d'Electricites -->
+<record id="tree_view_electricity" model="ir.ui.view">
+    <field name="name">purchase.electricity.tree</field>
+    <field name="model">purchase.electricity</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="intitule"/>
+            <field name="date_order"/>
+            <field name="qty"/>
+            <field name="amount"/>
+            <field name="sub_total" sum="Total"/>
+        </tree>
+    </field>
+</record>
+
+
+<!-- Action pour les factures d'electricites -->
+<record id="action_tchop_et_yamo_electricity" model="ir.actions.act_window">
+    <field name="name">ELECTRICITE</field>
+    <field name="res_model">purchase.electricity</field>
+    <field name="view_mode">tree,form</field>
+    <field name="view_ids" eval="[(5, 0, 0),
+        (0, 0, {'view_mode': 'tree', 'view_id': ref('tree_view_electricity')})]"/>
+</record>
+
+
+<record id="purchase_inherit_form" model="ir.ui.view">
+    <field name="name">purchase.order.inherit</field>
+    <field name="model">purchase.order</field>
+    <field name="inherit_id" ref="purchase.purchase_order_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//page[@name='purchase_delivery_invoice']" position="before">
+            <page string="Matiere Premiere">
+               <field name="raw_materials_ids">
+                    <tree editable="bottom">
+                        <field name="product_name"/>
+                        <field name="price_unit" widget="monetary"/>
+                        <field name="unite"/>
+                        <field name="qty"/>
+                        <field name="total_price_unit" widget="monetary"/>
+                    </tree>
+               </field>
+                <group class="oe_subtotal_footer oe_right">
+                    <field name="amount_untaxed_" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <div class="oe_subtotal_footer_separator oe_inline">
+                        <label for="amount_total_"/>
+                    </div>
+                    <field name="amount_total_" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                 </group>
+                <field name="notes" class="oe_inline" placeholder="Define your terms and conditions ..."/>
+                <div class="oe_clear"/>
+            </page>
+        </xpath>
+
+        <xpath expr="//sheet/div[@class='oe_title']" position="replace">
+            <div class="oe_title">
+            <span class="o_form_label" attrs="{'invisible': [('state','not in',('draft','sent'))]}">Demande de Prix</span>
+            <span class="o_form_label" attrs="{'invisible': [('state','in',('draft','sent'))]}">Bon de Commande</span>
+             <h1>
+                <field name="yamo_order" readonly="1"/>
+            </h1>
+            </div>
+        </xpath>
+    </field>
+</record>
+
+<!-- Vue Liste des Depenses Journaliers -->
+<record id="product_template_expenses" model="ir.ui.view">
+    <field name="name">purchase.order.tree.inherit</field>
+    <field name="model">purchase.order</field>
+    <field name="arch" type="xml">
+    <tree decoration-bf="message_unread==True" decoration-muted="state=='cancel'" decoration-info="state in ('wait','confirmed')" string="Purchase Order">
+        <field name="message_unread" invisible="1"/>
+        <field name="yamo_order"/>
+        <field name="date_order" />
+        <field name="partner_id"/>
+        <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+        <field name="date_planned" invisible="context.get('quotation_only', False)"/>
+        <field name="user_id"/>
+        <field name="origin"/>
+        <field name="amount_total_" sum="Total amount" widget="monetary"/>
+        <field name="currency_id" invisible="1"/>
+        <field name="state"/>
+        <field name="invoice_status" invisible="1"/>
+    </tree>
+    </field>
+</record>
+
+
+<!-- Action pour Consulter les depenses-->
+<record id="action_tchop_et_yamo_expenses" model="ir.actions.act_window">
+    <field name="name">DEPENSES</field>
+    <field name="res_model">purchase.order</field>
+    <field name="view_mode">tree,form</field>
+    <field name="view_ids" eval="[(5, 0, 0),
+        (0, 0, {'view_mode': 'tree', 'view_id': ref('product_template_expenses')}),
+        (0, 0, {'view_mode': 'form', 'view_id': ref('purchase_inherit_form')})]"/>
+</record>
+
+  
+  <menuitem
+        id="tchop_et_yamo_menu_purchase"
+        name="Achat"
+        parent="tchop_et_yamo_menu_expenses"
+  />
+
+
+ <menuitem
+        id="tchop_et_yamo_menu_expenses_child"
+        name="Matieres Premieres"
+        parent="tchop_et_yamo_menu_purchase"
+        action="action_tchop_et_yamo_expenses"
+  />
+  <menuitem
+        id="tchop_et_yamo_menu_expenses_djara"
+        name="Djara"
+        parent="tchop_et_yamo_menu_purchase"
+        action="action_tchop_et_yamo_expenses"
+  />
+
+  <menuitem
+        id="tchop_et_yamo_menu_otherexpenses"
+        name="Autre Depenses"
+        parent="tchop_et_yamo_menu_expenses"
+        action="action_tchop_et_yamo_expenses"
+  />
+  <menuitem
+        id="tchop_et_yamo_menu_electricity"
+        name="Electricite"
+        parent="tchop_et_yamo_menu_otherexpenses"
+        action="action_tchop_et_yamo_electricity"
+  />
+
+  <menuitem
+        id="tchop_et_yamo_menu_water"
+        name="Eau"
+        parent="tchop_et_yamo_menu_otherexpenses"
+        action="action_tchop_et_yamo_water"
+  />
+  <menuitem
+        id="tchop_et_yamo_menu_others"
+        name="Autres"
+        parent="tchop_et_yamo_menu_otherexpenses"
+        action="action_tchop_et_yamo_other"
+  />
+
+</odoo>

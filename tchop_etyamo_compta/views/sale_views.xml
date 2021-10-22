@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+    <!-- Vue Formulaire des Recettes De La nuit -->
+    <record id="yamo_form_evening" model="ir.ui.view">
+        <field name="name">yamo.sale.evening.form</field>
+        <field name="model">yamo.sale.evening</field>
+        <field name="arch" type="xml">  
+            <form>
+            <header>
+                <button name="action_confirm" id="action_confirm"
+                            string="Confirmer" class="btn-primary" type="object"/>
+                <field name="state" widget="statusbar" statusbar_visible="brouillon,sent,sale"/>
+            </header>
+            <sheet>
+                <div class="oe_title">
+                    <h1>
+                        <field name="name" readonly="1"/>
+                    </h1>
+                </div>
+                <group>
+                <group>
+                    <field name="partner_id" widget="res_partner_many2one" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1, 'show_vat': True}" options='{"always_reload": True}'/>
+                </group>
+                <group>
+                    <field name="pricelist_id"/>
+                    <field name="state" invisible="1"/>
+                    <field name="payment_term_id"/>
+                </group>
+                </group>
+                <notebook>
+                <page string="Ligne de Commande">
+                    <field 
+                        name="order_line"
+                        widget="section_and_note_one2many"
+                        mode="tree,kanban"
+                        attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"
+                    >
+                        <tree
+                            string="Ligne de Vente"
+                            editable="bottom"
+                        >
+                            <field 
+                                name="product_id"   
+                                force_save="1"
+                                context="{
+                                    'partner_id': parent.partner_id,
+                                    'quantity': product_uom_qty,
+                                    'pricelist': parent.pricelist_id,
+                                    'default_lst_price': price_unit,
+                                }"
+                            />
+                            <field name="product_uom_qty"/>
+                            <field name="price_unit"/>
+                            <field name="tax_id"/>
+                            <field name="price_subtotal" widget="monetary" groups="account.group_show_line_subtotals_tax_excluded"/>
+                        </tree>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                        <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                        <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                        <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                            <label for="amount_total" />
+                        </div>
+                        <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                    <field name="note" class="oe_inline" placeholder="Terms and conditions... (note: you can setup default ones in the Configuration menu)"/>
+                    <div class="oe_clear"/>
+                </page>
+                <page string="Recettes Du Soir">
+                  <field name="momo_line">
+                      <tree string="Ligne Numerique" editable="bottom">
+                        <field name="designation"/>
+                        <field name="number_command"/>
+                        <field name="price_unit"/>
+                        <field name="price_subtotal"/>
+                     </tree>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                        <!-- <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}"/> -->
+                        <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                            <label for="amount_total_momo" />
+                        </div>
+                        <field name="amount_total_momo" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                    <field name="note" class="oe_inline" placeholder="Terms and conditions... (note: you can setup default ones in the Configuration menu)"/>
+                    <div class="oe_clear"/>
+                </page>
+                </notebook>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="activity_ids" widget="mail_activity"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
+            </form>
+        </field>
+    </record>
+
+     <!-- Vue Liste des Recettes Du soir -->
+    <record id="yamo_tree_evening" model="ir.ui.view">
+        <field name="name">yamo.sale.evening.tree</field>
+        <field name="model">yamo.sale.evening</field>
+        <field name="arch" type="xml">
+            <tree string="Ventes Journaliers">
+                <field name="name" string="Reference"/>
+                <field name="date_order" string="Date du devis"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <field name="amount_momo_product" sum="Total Tax Included" widget="monetary"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    
+
+    <!-- Action pour Consulter les Recettes du Soir-->
+    <record id="action_tchop_etyamo_soir" model="ir.actions.act_window">
+        <field name="name">Recettes du Soir</field>
+        <field name="res_model">yamo.sale.evening</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('yamo_tree_evening')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('yamo_form_evening')})]"/>
+    </record>
+    
+    <!-- Vue Formulaire des Recettes du Jour -->
+    <record id="yamo_sale_form_morning" model="ir.ui.view">
+        <field name="name">yamo.sale.order.form</field>
+        <field name="model">yamo.sale.morning</field>
+        <field name="arch" type="xml">  
+            <form>
+            <header>
+                <button name="action_confirm" id="action_confirm"
+                            string="Confirmer" class="btn-primary" type="object"/>
+                <field name="state" widget="statusbar" statusbar_visible="brouillon,sent,sale"/>
+            </header>
+            <sheet>
+                <div class="oe_title">
+                    <h1>
+                        <field name="name" readonly="1"/>
+                    </h1>
+                </div>
+                <group>
+                <group>
+                    <field name="partner_id" widget="res_partner_many2one" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1, 'show_vat': True}" options='{"always_reload": True}'/>
+                </group>
+                <group>
+                    <field name="pricelist_id"/>
+                    <field name="state" invisible="1"/>
+                    <field name="payment_term_id"/>
+                </group>
+                </group>
+                <notebook>
+                <page string="Ligne de Commande">
+                    <field 
+                        name="order_line"
+                        widget="section_and_note_one2many"
+                        mode="tree,kanban"
+                        attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"
+                    >
+                        <tree
+                            string="Ligne de Vente"
+                            editable="bottom"
+                        >
+                            <field 
+                                name="product_id"   
+                                force_save="1"
+                            />
+                            <field name="product_uom_qty"/>
+                            <field name="price_unit"/>
+                            <field name="tax_id"/>
+                            <field name="price_subtotal" widget="monetary" groups="account.group_show_line_subtotals_tax_excluded"/>
+                        </tree>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                        <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                        <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                        <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                            <label for="amount_total" />
+                        </div>
+                        <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                    <field name="note" class="oe_inline" placeholder="Terms and conditions... (note: you can setup default ones in the Configuration menu)"/>
+                    <div class="oe_clear"/>
+                </page>
+                <page string="Recettes Journaliers">
+                    <field name="momo_line">
+                      <tree string="Ligne Numerique" editable="bottom">
+                        <field name="designation"/>
+                        <field name="number_command"/>
+                        <field name="price_unit"/>
+                        <field name="price_subtotal"/>
+                     </tree>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                        <!-- <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}"/> -->
+                        <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                            <label for="amount_total_momo" />
+                        </div>
+                        <field name="amount_total_momo" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                    <field name="note" class="oe_inline" placeholder="Terms and conditions... (note: you can setup default ones in the Configuration menu)"/>
+                    <div class="oe_clear"/>
+                </page>
+                </notebook>
+            </sheet>
+            <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+            </div>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Vue Liste des Recettes Journalieres -->
+    <record id="product_entries_morning" model="ir.ui.view">
+        <field name="name">yamo.sale.order.morning.tree</field>
+        <field name="model">yamo.sale.morning</field>
+        <field name="arch" type="xml">
+            <tree string="Ventes Journaliers">
+                <field name="name" string="Reference"/>
+                <field name="date_order" string="Date du devis"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <field name="amount_momo_product" sum="Total Tax Included" widget="monetary"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action pour Consulter les Recettes Journalieres de TchopEtyamo-->
+    <record id="action_tchop_etyamo_morning" model="ir.actions.act_window">
+        <field name="name">Recettes Journaliers</field>
+        <field name="res_model">yamo.sale.morning</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('product_entries_morning')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('yamo_sale_form_morning')})]"/>
+    </record>
+
+
+    <record id="yamo_sale_form" model="ir.ui.view">
+        <field name="name">yamo.sale.order.form</field>
+        <field name="model">yamo.sale.order</field>
+        <field name="arch" type="xml">  
+            <form string="Commandes de Ventes" class="o_yamo_sale_order">
+            <header>
+                <button name="action_confirm" id="action_confirm"
+                            string="Confirmer" class="btn-primary" type="object"/>
+                <field name="state" widget="statusbar" statusbar_visible="sent,sale"/>
+            </header>
+            <sheet>
+                <div class="oe_title">
+                    <h1>
+                        <field name="name" readonly="1"/>
+                    </h1>
+                </div>
+                <group>
+                <group>
+                    <field name="partner_id" widget="res_partner_many2one" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1, 'show_vat': True}" options='{"always_reload": True}'/>
+                    <field name="confirmation_date"/>
+                </group>
+                <group>
+                    <field name="validity_date"/>
+                    <field name="pricelist_id"/>
+                    <!-- <field name="state" invisible="1"/> -->
+                </group>
+                </group>
+                <notebook>
+                <page string="Ligne de Commande">
+                    <field 
+                        name="order_line"
+                        widget="section_and_note_one2many"
+                        mode="tree,kanban"
+                        attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"
+                    >
+                     <tree
+                        string="Ligne de Ventes"
+                        editable="bottom"
+                     >
+                        <field 
+                            name="product_id"
+                            force_save="1"
+                        />
+                        <field name="product_uom_qty"/>
+                        <field name="price_unit"/>
+                        <field name="tax_id"/>
+                        <field name="price_subtotal" widget="monetary" groups="account.group_show_line_subtotals_tax_excluded"/>
+                     </tree>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                    <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                        <label for="amount_total" />
+                    </div>
+                    <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                    <field name="note" class="oe_inline" placeholder="Terms and conditions... (note: you can setup default ones in the Configuration menu)"/>
+                    <div class="oe_clear"/>
+                </page>
+                </notebook>
+            </sheet>
+            <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+            </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vue Liste des Recettes Journalieres -->
+    <record id="product_template_entries" model="ir.ui.view">
+        <field name="name">yamo.sale.order.tree.inherit</field>
+        <field name="model">yamo.sale.order</field>
+        <field name="arch" type="xml">
+            <tree string="Ventes">
+                <field name="name" string="Reference de La vente"/>
+                <field name="date_order" string="Date du Devis"/>
+                <field name="partner_id"/>
+                <field name="origin"/>
+                <field name="user_id"/>
+                <field name="amount_total" sum="Total Tax Included" widget="monetary"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action pour Consulter les depenses-->
+    <record id="action_tchop_etyamo_recettes" model="ir.actions.act_window">
+        <field name="name">RECETTES</field>
+        <field name="res_model">yamo.sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('product_template_entries')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('yamo_sale_form')})]"/>
+    </record>
+
+    
+    <!-- Top Menu des recettes -->
+    <menuitem
+        id="tchop_et_yamo_menu_recettes"
+        name="Recettes"
+        parent="tchop_et_yamo_menu"
+        
+    />
+    <menuitem
+        id="tchop_et_yamo_menu_sale"
+        name="Ventes"
+        parent="tchop_et_yamo_menu_recettes"
+        action="action_tchop_etyamo_recettes"
+    />
+    <menuitem
+        id="tchop_et_yamo_menu_journaliers"
+        name="Recettes du Matin"
+        parent="tchop_et_yamo_menu_recettes"
+        action="action_tchop_etyamo_morning"
+    />
+
+     <menuitem
+        id="tchop_et_yamo_menu_soir"
+        name="Recettes du Soir"
+        parent="tchop_et_yamo_menu_recettes"
+        action="action_tchop_etyamo_soir"
+      />
+  
+</odoo>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Vue Liste des Articles de Tchopetyamo -->
+    <record id="product_template_tree_view_inherit" model="ir.ui.view">
+        <field name="name">product.template.product.tree.inherit</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <tree string="Article">
+                <field name="name"/>
+                <field name="qty"/>
+                <field name="unique_purchase_cost" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                <field name="purchase_cost" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}" sum="Total Purchase"/>
+                <field name="sale_qty"/>
+                <field name="production_cost" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                <field name="unique_production_cost" sum="Total Product"/>
+                <field name="qty"/>
+                <field name="unique_revenue_cost" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                <field name="revenue_cost" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}" sum="Total Revenue"/>
+                <field name="qty"/>
+                <field name="analytic_result"/>
+                <field name="analytic_revenue_rate"/>
+                <!-- <field name="margin_rate" avg="Avg. of Margin_rate"/> -->
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vue Kanban des articles de tchopetyamo -->
+    <record id="product_template_only_kanban_view_yamo" model="ir.ui.view">
+        <field name="name">Product.template.product.kanban.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_kanban_view"/>
+        <field name="arch" type="xml">
+        <xpath expr="//ul" position="after">
+            <ul>
+                <li>Quantite: <field name="qty"></field></li>
+            </ul>
+        </xpath>
+        </field>
+    </record>
+
+    <!-- Vue formulaire des articles de tchopetyamo -->
+    <record id="product_template_only_form_view_yamo" model="ir.ui.view">
+        <field name="name">product.template.common.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_information']/group/group[@name='group_standard_price']/field[@name='product_variant_id']" position="after">
+                <label for="qty"/>
+                <div>
+                    <field name="qty"/>
+                </div>
+                <label for="sale_qty"/>
+                <div>
+                  <field name="sale_qty"/>
+                </div>
+                <label for="purchase_cost"/>
+                <div>
+                    <field name="purchase_cost"  widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                </div>
+                <label for="unique_production_cost"/>
+                <div>
+                    <field name="unique_production_cost"  widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                </div>
+                <label for="weigth_id"/>
+                <div class="o_row">
+                    <field name="weigth_id"/>
+                    <span>g</span>
+                </div>
+            </xpath>
+
+
+             <xpath expr="//page[@name='general_information']" position="after">
+               <page string="Calcul d'achat MATIERES PREMIERES">
+                  <field name="cost_ids">
+                     <tree editable="bottom">
+                       <field name="element_name"/>
+                       <field name="unit_price" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                       <field name="qty" sum="Total quantite Achat"/>
+                       <field name="amount_price" sum="Cout D'achat" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                     </tree>
+                  </field>
+                </page>
+            </xpath>
+
+            <xpath expr="//page[@name='general_information']" position="after">
+               <page string="Calcul Cout de Production">
+                  <field name="production_ids">
+                     <tree editable="bottom">
+                       <field name="element_name"/>
+                       <field name="unit_price" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                       <field name="qty" sum="Total quantite Production"/>
+                       <field name="amount_price_production" sum="Cout Production"/>
+                     </tree>
+                  </field>
+                </page>
+            </xpath>
+
+
+            <xpath expr="//page[@name='general_information']/group/group[@name='group_general']/field[@name='categ_id']" position="after">
+                <label for="analytic_result"/>
+                <div>
+                <field name="analytic_result"  widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                </div>
+                <label for="analytic_revenue_rate"/>
+                <div>
+                    <field name="analytic_revenue_rate"/>
+                </div>
+                <label for="unique_revenue_cost"/>
+                <div>
+                <field name="unique_revenue_cost" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                </div>
+                <label for="production_cost"/>
+                <div>
+                  <field name="production_cost" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                </div>
+                <label for="checkin_yamo_date"/>
+                <div>
+                  <field name="checkin_yamo_date"/>
+                </div>
+                <label for="unique_purchase_cost"/>
+                <div>
+                  <field name="unique_purchase_cost" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                </div>
+            </xpath>
+
+
+        </field>
+    </record>
+    
+  
+    <!-- Action pour creer les articles de Tchop et Yamo -->
+    <record id="action_tchop_et_yamo" model="ir.actions.act_window">
+        <field name="name">TABLEAU  SYNTHETIQUE DE STRUCTURATION DES COUTS DES PRODUITS DU RESTAURANT</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('product_template_tree_view_inherit')}),
+            (0, 0, {'view_mode': 'kanban', 'view_id': ref('product_template_only_kanban_view_yamo')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('product_template_only_form_view_yamo')})]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+               Creer Un Nouvel Article de Tchop Et Yamo
+            </p>
+        </field>
+    </record>
+
+     <!-- Top Menu Tchop et Yamo -->
+     <menuitem
+        id="tchop_et_yamo_menu"
+        name="Tchopetyamo"
+        sequence="1"
+        action="action_tchop_et_yamo"
+        web_icon="tchop_etyamo_compta,static/description/tchop-et-yamo-min.png"
+     />
+
+     <!-- <menuitem
+        id="tchop_et_yamo_article"
+        name="Article"
+        sequence="1"
+        parent="tchop_et_yamo_menu"
+     /> -->
+
+    <menuitem
+        id="tchop_et_yamo_menu_child"
+        name="Comptabilite Analytique"
+        parent="tchop_et_yamo_menu"
+     />
+
+    <menuitem
+        id="tchop_et_yamo_menu_stock"
+        name="Stock"
+        parent="tchop_et_yamo_menu"
+     />
+    
+</odoo>

@@ -1,0 +1,32 @@
+<odoo>
+
+    <!--Form view for TchopetYamo wizard -->
+    <record id="view_hotel_folio_wizard" model="ir.ui.view">
+        <field name="name">tchop.yamo.wizard</field>
+        <field name="model">tchop.yamo.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Folio Report">
+                <group col="4">
+                    <field name="date_start" required="1" />
+                    <field name="date_end" required="1" />
+                </group>
+                <footer>
+                    <button name="print_report" string="Imprimer Le Rapport" icon="fa-print" type="object" class="oe_highlight" />
+                    <button string="Cancel" icon="fa-close" class="btn btn-primary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!--Action for folio TchopetYamo wizard -->
+    <record id="tchop_etyamo_wizard" model="ir.actions.act_window">
+        <field name="name">Rapport Analytique Tchopetyamo</field>
+        <field name="res_model">tchop.yamo.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem name="Rapport Analytique Tchopetyamo" action="tchop_etyamo_wizard" id="wizard_hotel_menu" parent="tchop_et_yamo_menu_child" sequence="31" />
+
+</odoo>

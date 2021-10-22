@@ -1,0 +1,215 @@
+<odoo>
+
+    <!--Template for hotel folio -->
+    <template id="report_tchop_yamo">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <!-- <div class="row mt32 mb32">
+                        <h4>
+                            <span>
+                                <center>Rapport Analytique</center>
+                            </span>
+                        </h4>
+                    </div> -->
+                    <!-- <div class="row mt32 mb32">
+                        <div class="text-center">
+                            <strong>From:</strong>
+                            <span t-esc="data['date_start']" />
+                            <strong>To:</strong>
+                            <span t-esc="data['date_end']" />
+                        </div>
+                    </div> -->
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <table class="table table-condensed" style="text-align: center">
+                       <tr>
+                          <td>
+                            <strong>CALCUL DES DIFFERENTS COUTS PAR PRODUIT</strong>
+                          </td>
+                       </tr>
+                    </table>
+                    <table class="table table-condensed">
+                        <tr>
+                           <td>
+                           </td>
+                           <td>
+                              <strong>CALCUL COUT D'ACHAT</strong>
+                           </td>
+                            <td />
+                            <td />
+                            <td>
+                             <strong>CALCUL COUT DE PRODUCTION</strong>
+                           </td>
+                            <td />
+                            <td />
+                            <td>
+                             <strong>COUT DE REVIENT</strong>
+                           </td>
+                           <td />
+                           <td />
+                           <td>
+                             <strong>CALCUL RESULTAT ANALYTIQUE</strong>
+                           </td>
+                            <td>
+                             <strong>Tx</strong>
+                           </td>
+                            <td>
+                           </td>
+                            <td>
+                           </td>
+                            <td>
+                           </td>
+                            <td>
+                           </td>
+                            <td>
+                           </td>
+                            <td>
+                           </td>
+                            <td>
+                           </td>
+                            <td>
+                           </td>
+                            <td>
+                           </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>PRODUITS</strong>
+                            </td>
+                            <td>
+                                <strong>QTE</strong>
+                            </td>
+                            <td>
+                                <strong>Cau</strong>
+                            </td>
+                            <td>
+                                <strong>Ca</strong>
+                            </td>
+                            <td>
+                                <strong>QTE</strong>
+                            </td>
+                             <td>
+                                <strong>Cpu</strong>
+                            </td>
+                            <td>
+                                <strong>CP</strong>
+                            </td>
+                             <td>
+                                <strong>QTE</strong>
+                            </td>
+                             <td>
+                                <strong>CRu</strong>
+                            </td>
+                             <td>
+                                <strong>CR</strong>
+                            </td>
+                             <td>
+                                <strong>QTE</strong>
+                            </td>
+                            <td>
+                                <strong>Rau</strong>
+                            </td>
+                            <td>
+                                <strong>CA</strong>
+                            </td>
+                            <td>
+                                <strong>RA</strong>
+                            </td>
+                             <td>
+                                <strong>CR/CA</strong>
+                            </td>
+                             <td>
+                                <strong>Taux de Marge</strong>
+                            </td>
+                        </tr>
+                        <tr t-foreach="tchoptetyamo_data" t-as="tchop">
+                            <td>
+                                <span t-esc="tchop.get('name')" />
+                            </td>
+                            <td>
+                                <span t-esc="tchop.get('qty', '')" />
+                            </td>
+                            <td>
+                                <span t-esc="tchop.get('unique_purchase_cost', '')" />
+                            </td>
+                            <td>
+                                <span t-esc="tchop.get('purchase_cost', '')" />
+                            </td>
+                            <td>
+                                <span t-esc="tchop.get('sale_qty', '')" />
+                            </td>
+                            <td>
+                                <span t-esc="tchop.get('unique_production_cost', '')" />
+                            </td>
+                            <td>
+                                <span t-esc="tchop.get('production_cost', '')" />
+                            </td>
+                             <td>
+                                <span t-esc="tchop.get('qty', '')" />
+                            </td>
+                             <td>
+                                <span t-esc="tchop.get('unique_revenue_cost', '')" />
+                            </td>
+                             <td>
+                                <span t-esc="tchop.get('revenue_cost', '')" />
+                            </td>
+                             <td>
+                                <span t-esc="tchop.get('qty', '')" />
+                            </td>
+                             <td>
+                                <span t-esc="tchop.get('analytic_result', '')" />
+                            </td>
+                             <td>
+                                <span t-esc="tchop.get('purchase_cost', '')" />
+                            </td>
+                             <td>
+                                <span t-esc="tchop.get('analytic_result', '')" />
+                            </td>
+                            <td>
+                                <span t-esc="tchop.get('analytic_revenue_rate', '')" />
+                            </td>
+                             <td>
+                                <span t-esc="tchop.get('margin_rate', '')" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td />
+                            <td />
+                            <td>
+                                <strong>Cout D'achat:</strong>
+                            </td>
+                            <td>
+                            <t t-foreach="tchoptetyamo_data" t-as="tchop">
+                                <t t-esc="tchop.get('total_purchase_cost', '')" />
+                            </t>
+                            </td>
+                            <td />
+                            <td>
+                            <strong>Cout de Production:</strong>
+                            </td>
+                            <td>
+                            <t t-foreach="tchoptetyamo_data" t-as="tchop">
+                                <t t-esc="tchop.get('total_production_cost', '')" />
+                            </t>
+                            </td>
+                            <td />
+                            <td>
+                            <strong>Cout de Revenue:</strong>
+                            </td>
+                            <td>
+                            <t t-foreach="tchoptetyamo_data" t-as="tchop">
+                                <t t-esc="tchop.get('total_revenue_cost', '')" />
+                            </t>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

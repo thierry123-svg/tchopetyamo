@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="external_layout_standard" inherit_id="web.external_layout_standard" name="custom layout" customize_show="True">
+        <xpath expr="//div[@class='header']" position="replace">
+        <div class="header">
+            <div class="row">
+                <div class="col-3 mb4">
+                    
+                </div>
+            </div>
+            <div t-if="company.logo or company.report_header" class="row zero_min_height">
+                <div class="col-12">
+                </div>
+                <h5>tchopetyamo</h5>
+            </div>
+            <div class="row">
+                <div class="col-6" name="company_address">
+                </div>
+            </div>
+        </div>
+        </xpath>
+    </template>
+</odoo>

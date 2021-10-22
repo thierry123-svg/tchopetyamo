@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Sequences for yamo.order-->
+        <record id="seq_sale_yamo_order" model="ir.sequence">
+            <field name="name">Yamo Purchase</field>
+            <field name="code">purchase.order.yamo</field>
+            <field name="prefix">MP</field>
+            <field name="padding">2</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for sale.order-->
+        <record id="seq_sale_yamo_vente" model="ir.sequence">
+            <field name="name">Yamo Sale</field>
+            <field name="code">sale.order.yamo</field>
+            <field name="prefix">VE</field>
+            <field name="padding">2</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+          <record id="seq_sale_yamo_days" model="ir.sequence">
+            <field name="name">Recettes du jour</field>
+            <field name="code">receipts.morning.yamo</field>
+            <field name="prefix">RJ</field>
+            <field name="padding">2</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+
+        <record id="seq_sale_yamo_night" model="ir.sequence">
+            <field name="name">Recettes de La Nuit</field>
+            <field name="code">receipts.evening.yamo</field>
+            <field name="prefix">RS</field>
+            <field name="padding">2</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_sale_yamo_electricity" model="ir.sequence">
+            <field name="name">Factures D'electricite</field>
+            <field name="code">purchase.electricity.yamo</field>
+            <field name="prefix">ENEO/</field>
+            <field name="padding">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+
+        <record id="seq_sale_yamo_water" model="ir.sequence">
+            <field name="name">Factures D'eau</field>
+            <field name="code">purchase.water.yamo</field>
+            <field name="prefix">CDE/</field>
+            <field name="padding">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_sale_yamo_other" model="ir.sequence">
+            <field name="name">Autres deoenses</field>
+            <field name="code">other.expenses.yamo</field>
+            <field name="prefix">DPS/</field>
+            <field name="padding">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+
+    <record id="stock_yamo_fresh_extra" model="ir.ui.view">
+        <field name="name">stock.yamo.extra.tree</field>
+        <field name="model">stock.yamo.extra</field>
+        <field name="arch" type="xml">
+            <tree string="Extra">
+                <field name="product_name"/>
+                <field name="price_unit"/>
+                <field name="unite"/>
+                <field name="qty"/>
+            </tree>
+        </field>
+    </record>
+
+
+
+    <record id="stock_yamo_fresh_food" model="ir.ui.view">
+        <field name="name">stock.fresh.food.tree</field>
+        <field name="model">stock.fresh.food</field>
+        <field name="arch" type="xml">
+            <tree string="Vivre Frais">
+                <field name="product_name"/>
+                <field name="price_unit"/>
+                <field name="unite"/>
+                <field name="qty"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="stock_yamo_product_tree" model="ir.ui.view">
+        <field name="name">stock.yamo.materials.tree</field>
+        <field name="model">stock.yamo.materials</field>
+        <field name="arch" type="xml">
+            <tree string="Matiere Premiere">
+                <field name="product_name"/>
+                <field name="price_unit"/>
+                <field name="unite"/>
+                <field name="qty"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="stock_yamo_product_juice" model="ir.ui.view">
+        <field name="name">stock.fresh.juice.tree</field>
+        <field name="model">stock.fresh.juice</field>
+        <field name="arch" type="xml">
+            <tree string="Djara">
+                <field name="product_name"/>
+                <field name="price_unit"/>
+                <field name="unite"/>
+                <field name="qty"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="stock_yamo_fresh_food_form" model="ir.ui.view">
+        <field name="name">stock.fresh.juice.form</field>
+        <field name="model">stock.fresh.juice</field>
+        <field name="arch" type="xml">
+            <form string="Matiere premiere">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="product_name"/>
+                            <field name="price_unit"/>
+                        </group>
+                        <group>
+                            <label for="unite"/>
+                            <div class="o_row">
+                                <field name="unite"/>
+                                <span>Kg</span>
+                            </div>
+                            <field name="qty"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record id="action_tchop_et_yamo_extra" model="ir.actions.act_window">
+        <field name="name">EXTRA</field>
+        <field name="res_model">stock.yamo.extra</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('stock_yamo_fresh_extra')})]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+               Creer Un Nouveau de Vivre Frais
+            </p>
+        </field>
+    </record>
+
+    <record id="action_tchop_et_yamo_food" model="ir.actions.act_window">
+        <field name="name">VIVRE FRAIS</field>
+        <field name="res_model">stock.fresh.food</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('stock_yamo_fresh_food')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('stock_yamo_fresh_food_form')})]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+               Creer Un Nouveau de Vivre Frais
+            </p>
+        </field>
+    </record>
+
+
+     <record id="action_tchop_et_yamo_juice" model="ir.actions.act_window">
+        <field name="name">Djara</field>
+        <field name="res_model">stock.fresh.juice</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('stock_yamo_product_juice')})]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+               Creer Un Nouveau Djara
+            </p>
+        </field>
+    </record>
+    
+
+    <record id="stock_yamo_form" model="ir.ui.view">
+        <field name="name">stock.yamo.materials.form</field>
+        <field name="model">stock.yamo.materials</field>
+        <field name="arch" type="xml">
+            <form string="Matiere premiere">
+            <sheet>
+                <group>
+                <group>
+                    <field name="product_name"/>
+                    <field name="price_unit"/>
+                </group>
+                <group>
+                    <label for="unite"/>
+                    <div class="o_row">
+                        <field name="unite"/>
+                        <span>Kg</span>
+                    </div>
+                    <field name="qty"/>
+                </group>
+                </group>
+             </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Action pour Consulter le stock des articles de Tchop et Yamo -->
+    <record id="action_tchop_et_yamo_stock" model="ir.actions.act_window">
+        <field name="name">STOCK</field>
+        <field name="res_model">stock.yamo.materials</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('stock_yamo_product_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('stock_yamo_form')}),
+            ]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+               Creer Un Nouveau stock de Matieres Premieres
+            </p>
+        </field>
+    </record>
+
+     <record id="dashboard_form_view" model="ir.ui.view">
+        <field name="name">Formulaire Tableu de Bord</field>
+        <field name="model">board.board</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Tableau de Bord">
+              <board style="1-5">
+                  <column>
+                     <action
+                       string="Matiere Premiere"
+                       name="%(action_tchop_et_yamo_stock)d"/>
+                     <action
+                       string="Vivre Frais"
+                       name="%(action_tchop_et_yamo_food)d"/>
+                     <action
+                       string="Djara"
+                       name="%(action_tchop_et_yamo_juice)d"/>
+                       <action
+                       string="Extra"
+                       name="%(action_tchop_et_yamo_extra)d"/>
+                  </column>
+              </board>
+            </form>
+        </field>
+    </record>
+
+    <record id="stock_yamo_dashboard" model="ir.actions.act_window">
+        <field name="name">Tableau de Bord</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="usage">menu</field>
+        <field name="view_id" ref="dashboard_form_view"/>
+    </record>
+    
+    <menuitem
+        id="tchop_et_yamo_menu_stock"
+        name="Stock"
+        parent="tchop_et_yamo_menu"
+     />
+
+    <menuitem
+        id="tchop_et_yamo_menu_stock_child"
+        name="Tableau de Bord de Stock"
+        parent="tchop_et_yamo_menu_stock"
+        action="stock_yamo_dashboard"
+    />
+
+    <menuitem
+        id="tchop_et_yamo_menu_expenses"
+        name="Dépenses"
+        parent="tchop_et_yamo_menu"
+     />
+    <menuitem
+        id="tchop_et_yamo_menu_expenses_child"
+        name="Vivre Frais"
+        parent="tchop_et_yamo_menu_expenses"
+        action="action_tchop_et_yamo_food"
+        sequence="2"
+    />
+
+    <!-- <menuitem
+        id="tchop_et_yamo_menu_expenses_child"
+        name="Djara"
+        parent="tchop_et_yamo_menu_expenses"
+        action="action_tchop_et_yamo_juice"
+    /> -->
+</odoo>
