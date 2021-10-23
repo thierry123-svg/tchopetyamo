@@ -12,7 +12,7 @@ class ProductTemplate(models.Model):
     _name = 'stock.yamo.materials'
     _rec_name = 'product_name'
 
-    @api.multi
+    
     @api.depends('qty','price_unit')
     def _compute_amount(self):
         """Fonction qui calcule le montant total"""

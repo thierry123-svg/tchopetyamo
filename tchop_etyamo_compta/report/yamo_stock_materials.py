@@ -12,7 +12,8 @@ class YamoStockMaterials(models.Model):
     _name = 'yamo.stock.materials'
     _auto = False
 
-    @api.multi
+    
+    
     @api.depends('qty','price_unit')
     def _compute_amount(self):
         """Fonction qui calcule le montant total"""
@@ -29,7 +30,7 @@ class YamoStockMaterials(models.Model):
     total_price_unit = fields.Integer(string="Montant", compute="_compute_amount")
     
 
-    @api.model_cr
+   
     def init(self):
         drop_view_if_exists(self.env.cr, self._table)
         self.env.cr.execute(""" 

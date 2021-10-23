@@ -78,7 +78,7 @@ class YamoOrder(models.Model):
             })
   
 
-    @api.multi
+    
     def action_confirm(self):
         if self._get_forbidden_state_confirm() & set(self.mapped('state')):
             raise UserError(_(
@@ -152,7 +152,7 @@ class YamoSaleOrderLine(models.Model):
     price_total = fields.Monetary(compute='_compute_amount', string='Total', readonly=True, store=True)
 
     # Non-stored related field to allow portal user to see the image of the product he has ordered
-    product_image = fields.Binary('Product Image', related="product_id.image", store=False, readonly=False)
+    # product_image = fields.Binary('Product Image', related="product_id.image", store=False, readonly=False)
     product_uom_qty = fields.Float(string='Quantite Commandee', required=True, default=1.0)
     price_subtotal = fields.Monetary(compute='_compute_amount', string='Sous-total', readonly=True, store=True)
 
@@ -220,7 +220,7 @@ class YamoSaleMorning(models.Model):
             record.amount_momo_product = record.amount_total_momo + record.amount_total
 
 
-    @api.multi
+    
     def action_confirm(self):
         if self._get_forbidden_state_confirm() & set(self.mapped('state')):
                 raise UserError(_(
@@ -324,7 +324,7 @@ class YamoSaleOrderMorningLine(models.Model):
     product_no_variant_attribute_value_ids = fields.Many2many('product.template.attribute.value', string='Product attribute values that do not create variants')
     # name = fields.Text(string='Description', required=True)
     # Non-stored related field to allow portal user to see the image of the product he has ordered
-    product_image = fields.Binary('Product Image', related="product_id.image", store=False, readonly=False)
+    # product_image = fields.Binary('Product Image', related="product_id.image", store=False, readonly=False)
     product_uom_qty = fields.Float(string='Quantite Commandee', required=True, default=1.0)
     price_tax = fields.Float(compute='_compute_amount', string='Total Tax', readonly=True, store=True)
     price_unit = fields.Float('Prix Unitaire', required=True, related='product_id.list_price')
@@ -420,7 +420,7 @@ class YamoSaleEvening(models.Model):
         for record in self:
             record.amount_momo_product = record.amount_total_momo + record.amount_total
 
-    @api.multi
+    
     def action_confirm(self):
         for order in self.filtered(lambda order: order.partner_id not in order.message_partner_ids):
             order.message_subscribe([order.partner_id.id])
@@ -521,7 +521,7 @@ class YamoSaleOrderEveningLine(models.Model):
     product_no_variant_attribute_value_ids = fields.Many2many('product.template.attribute.value', string='Product attribute values that do not create variants')
     # name = fields.Text(string='Description', required=True)
     # Non-stored related field to allow portal user to see the image of the product he has ordered
-    product_image = fields.Binary('Product Image', related="product_id.image", store=False, readonly=False)
+    # product_image = fields.Binary('Product Image', related="product_id.image", store=False, readonly=False)
     product_uom_qty = fields.Float(string='Quantite Commandee', required=True, default=1.0)
     price_tax = fields.Float(compute='_compute_amount', string='Total Tax', readonly=True, store=True)
     price_unit = fields.Float('Prix Unitaire', required=True, related='product_id.list_price')

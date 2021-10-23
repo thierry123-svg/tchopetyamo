@@ -11,7 +11,7 @@ class ProductTemplate(models.Model):
 
     _inherit = 'product.template'
 
-    @api.one
+   
     def _compute_cout_achat(self):
         for record in self:
             record.unique_purchase_cost = sum(line.amount_price for line in self.cost_ids)
@@ -37,14 +37,14 @@ class ProductTemplate(models.Model):
     # poids_id = fields.Char(compute='_get_poids_id')
    
    
-    @api.multi
+
     @api.depends('standard_price')
     def _compute_purchase(self):
         """ Fonction qui calcule le cout d'achat """
         for rec in self:
             rec.purchase_cost = rec.qty * rec.unique_purchase_cost
 
-    @api.multi
+
     def _get_unique_production(self):
         for record in self:
             record.production_cost = record.unique_production_cost/2
@@ -54,14 +54,14 @@ class ProductTemplate(models.Model):
     #     for record in self:
     #         record.poids_id = "%s" % (record.name)
 
-    @api.multi
+
     def _compute_revenue(self):
         """Fonction qui calcule le taux de revenu """
         for rec in self:
             if rec.purchase_cost != 0:
                 rec.analytic_revenue_rate = str(round((rec.revenue_cost/rec.purchase_cost)*100, 2)) + '%'
     
-    @api.multi
+
     def _compute_analytic_result(self):
         """ Fonction qui calcule le Resultat Analytique """
         for rec in self:
@@ -69,19 +69,19 @@ class ProductTemplate(models.Model):
             if  rec.analytic_result < 0:
                 rec.description = "Attention votre Resultat Analytique %s est negatif" %(rec.analytic_result)
 
-    @api.multi
+
     def _compute_revenue_cost(self):
         """Fonction qui calcule le cout de revient"""
         for rec in self:
             rec.revenue_cost = rec.qty * rec.unique_revenue_cost
 
-    @api.multi
+
     def _compute_production_cost(self):
         """ Fonction qui calcule le cout de production """
         for record in self:
             record.unique_production_cost = record.unique_purchase_cost + sum(line.amount_price_production for line in record.production_ids)
     
-    @api.multi
+
     def _compute_quantity_production(self):
         """ Fonction qui calcule la quantite de production"""
         for record in self:
@@ -96,7 +96,7 @@ class ProductTemplate(models.Model):
     #          raise ValidationError(_('Une quantite ne peut pas etre negative!.'))
     
 
-    # @api.multi
+    
     # def _compute_margin_rate(self):
     #     """ Fonction qui calcule le taux de marge"""
     #     for rec in self:
@@ -124,7 +124,7 @@ class ProductTemplate(models.Model):
     #        _logger.info("in checking sum purchase_cost {}".format(record.total_purchase_cost))
 
      
-    @api.one
+   
     @api.depends('purchase_cost')
     def _compute_total_cost(self):
         _logger.info("RESERVATION : GET TOTAL PURCHASE COST")
@@ -132,7 +132,7 @@ class ProductTemplate(models.Model):
         self.total_purchase_cost = sum(line.purchase_cost for line in self)
         _logger.info("Checking : Total Purchase Cost {}".format(self.total_purchase_cost))
 
-    @api.one
+   
     @api.depends('production_cost')
     def _compute_total_cost_production(self):
         _logger.info("RESERVATION : GET TOTAL PRODUCTION COST")
@@ -140,7 +140,7 @@ class ProductTemplate(models.Model):
         self.total_production_cost = sum(line.production_cost for line in self)
         _logger.info("Checking : Total Production Cost {}".format(self.total_production_cost))
     
-    @api.one
+   
     @api.depends('revenue_cost')
     def _compute_total_cost_revenue(self):
         _logger.info("RESERVATION : GET TOTAL REVENUE COST")
@@ -154,7 +154,7 @@ class ProductTemplate(models.Model):
     class ProductTemplateCost(models.Model):
         _name='product.template.cost'
         
-        @api.multi
+       
         @api.depends('qty','unit_price')
         def _compute_amount(self):
             """Fonction qui calcule le montant total"""
@@ -163,7 +163,7 @@ class ProductTemplate(models.Model):
                    rec.amount_price = rec.qty * rec.unit_price
 
         
-        @api.one
+        
         @api.depends('amount_price')
         def _compute_amount_total(self):
             """Fonction qui calcule le montant total"""
@@ -197,7 +197,7 @@ class ProductTemplate(models.Model):
         _name='product.template.production'
 
 
-        @api.multi
+       
         @api.depends('qty','unit_price')
         def _compute_amount(self):
             """Fonction qui calcule le montant total"""
