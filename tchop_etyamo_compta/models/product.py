@@ -20,7 +20,7 @@ class ProductTemplate(models.Model):
     purchase_cost = fields.Integer(string="Cout d'achat", compute="_compute_purchase", size=15, digits=(15,0))
     production_cost = fields.Integer(string="Cout de Production Unitaire", compute="_get_unique_production")
     revenue_cost = fields.Integer(string="Cout de Revient", compute="_compute_revenue_cost")
-    analytic_revenue_rate = fields.Char(string="Taux Analytique", compute="_compute_revenue")
+    # analytic_revenue_rate = fields.Char(string="Taux Analytique", compute="_compute_revenue")
     analytic_result = fields.Integer(string="Revenu Analytique", compute="_compute_analytic_result")
     unique_production_cost = fields.Float(string="Cout de production", compute="_compute_production_cost")
     unique_purchase_cost = fields.Float(string="Cout d'achat Unitaire", compute="_compute_cout_achat")
@@ -55,11 +55,11 @@ class ProductTemplate(models.Model):
     #         record.poids_id = "%s" % (record.name)
 
 
-    def _compute_revenue(self):
-        """Fonction qui calcule le taux de revenu """
-        for rec in self:
-            if rec.purchase_cost != 0:
-                rec.analytic_revenue_rate = str(round((rec.revenue_cost/rec.purchase_cost)*100, 2)) + '%'
+    # def _compute_revenue(self):
+    #     """Fonction qui calcule le taux de revenu """
+    #     for rec in self:
+    #         if rec.purchase_cost != 0:
+    #             rec.analytic_revenue_rate = str(round((rec.revenue_cost/rec.purchase_cost)*100, 2)) + '%'
     
 
     def _compute_analytic_result(self):

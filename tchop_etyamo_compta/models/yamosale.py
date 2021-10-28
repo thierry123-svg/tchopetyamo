@@ -208,7 +208,7 @@ class YamoSaleMorning(models.Model):
     company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env['res.company']._company_default_get('sale.order'))
     partner_id = fields.Many2one('res.partner', string='Client')
     momo_line = fields.One2many('yamo.momo.line', 'momo_id', string='Mobile Money')
-    partner_shipping_id = fields.Many2one('res.partner', string='Delivery Address', readonly=True, required=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'sale': [('readonly', False)]}, help="Delivery address for current sales order.")
+    partner_shipping_id = fields.Many2one('res.partner', string='Delivery Address', readonly=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'sale': [('readonly', False)]}, help="Delivery address for current sales order.")
     note = fields.Text('Termes Et conditions')
     amount_total_momo = fields.Monetary(string='Total', store=True, readonly=True, compute='_amount_all_momo', track_visibility='always', track_sequence=6)
     amount_momo_product = fields.Monetary(string='Total des Ventes', store=True, readonly=True, compute='_amount_momo_product', track_visibility='always', track_sequence=6)
@@ -281,14 +281,13 @@ class YamoSaleMorning(models.Model):
                 vals['name'] = self.env['ir.sequence'].with_context(force_company=vals['company_id']).next_by_code('receipts.morning.yamo') or _('New')
             else:
                 vals['name'] = self.env['ir.sequence'].next_by_code('receipts.morning.yamo') or _('New')
-
         # Makes sure partner_invoice_id', 'partner_shipping_id' and 'pricelist_id' are defined
-        if any(f not in vals for f in ['partner_invoice_id', 'partner_shipping_id', 'pricelist_id']):
-            partner = self.env['res.partner'].browse(vals.get('partner_id'))
-            addr = partner.address_get(['delivery', 'invoice'])
-            vals['partner_invoice_id'] = vals.setdefault('partner_invoice_id', addr['invoice'])
-            vals['partner_shipping_id'] = vals.setdefault('partner_shipping_id', addr['delivery'])
-            vals['pricelist_id'] = vals.setdefault('pricelist_id', partner.property_product_pricelist and partner.property_product_pricelist.id)
+        # if any(f not in vals for f in ['partner_invoice_id', 'partner_shipping_id', 'pricelist_id']):
+        #     partner = self.env['res.partner'].browse(vals.get('partner_id'))
+        #     addr = partner.address_get(['delivery', 'invoice'])
+        #     vals['partner_invoice_id'] = vals.setdefault('partner_invoice_id', addr['invoice'])
+        #     vals['partner_shipping_id'] = vals.setdefault('partner_shipping_id', addr['delivery'])
+        #     vals['pricelist_id'] = vals.setdefault('pricelist_id', partner.property_product_pricelist and partner.property_product_pricelist.id)
         result = super(YamoSaleMorning, self).create(vals)
         return result
 
@@ -478,12 +477,12 @@ class YamoSaleEvening(models.Model):
                 vals['name'] = self.env['ir.sequence'].next_by_code('receipts.evening.yamo') or _('New')
 
         # Makes sure partner_invoice_id', 'partner_shipping_id' and 'pricelist_id' are defined
-        if any(f not in vals for f in ['partner_invoice_id', 'partner_shipping_id', 'pricelist_id']):
-            partner = self.env['res.partner'].browse(vals.get('partner_id'))
-            addr = partner.address_get(['delivery', 'invoice'])
-            vals['partner_invoice_id'] = vals.setdefault('partner_invoice_id', addr['invoice'])
-            vals['partner_shipping_id'] = vals.setdefault('partner_shipping_id', addr['delivery'])
-            vals['pricelist_id'] = vals.setdefault('pricelist_id', partner.property_product_pricelist and partner.property_product_pricelist.id)
+        # if any(f not in vals for f in ['partner_invoice_id', 'partner_shipping_id', 'pricelist_id']):
+        #     partner = self.env['res.partner'].browse(vals.get('partner_id'))
+        #     addr = partner.address_get(['delivery', 'invoice'])
+        #     vals['partner_invoice_id'] = vals.setdefault('partner_invoice_id', addr['invoice'])
+        #     vals['partner_shipping_id'] = vals.setdefault('partner_shipping_id', addr['delivery'])
+        #     vals['pricelist_id'] = vals.setdefault('pricelist_id', partner.property_product_pricelist and partner.property_product_pricelist.id)
         result = super(YamoSaleEvening, self).create(vals)
         return result
 

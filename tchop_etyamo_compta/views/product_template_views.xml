@@ -19,7 +19,7 @@
                 <field name="revenue_cost" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}" sum="Total Revenue"/>
                 <field name="qty"/>
                 <field name="analytic_result"/>
-                <field name="analytic_revenue_rate"/>
+                
                 <!-- <field name="margin_rate" avg="Avg. of Margin_rate"/> -->
             </tree>
         </field>
@@ -101,10 +101,6 @@
                 <label for="analytic_result"/>
                 <div>
                 <field name="analytic_result"  widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
-                </div>
-                <label for="analytic_revenue_rate"/>
-                <div>
-                    <field name="analytic_revenue_rate"/>
                 </div>
                 <label for="unique_revenue_cost"/>
                 <div>
