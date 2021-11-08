@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Stock View Tchop et yamo -->
+    <menuitem
+        id="tchop_et_yamo_menu_stock"
+        name="Stock"
+        parent="tchop_et_yamo_menu"
+    />
+
+    <menuitem
+        id="tchop_et_yamo_menu_inventory"
+        name="Rapport d'inventaire"
+        parent="tchop_et_yamo_menu_stock"
+        action="stock.dashboard_open_quants"
+    />
+
+    <menuitem
+        id="tchop_et_yamo_menu_nomenclature"
+        name="Mouvement d'invenataire"
+        parent="tchop_et_yamo_menu_stock"
+        action="stock.stock_move_action"
+    />
+
+    
+</odoo>

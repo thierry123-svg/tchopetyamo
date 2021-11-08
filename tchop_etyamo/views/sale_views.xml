@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Stock View Tchop et yamo -->
+    <menuitem
+        id="tchop_et_yamo_menu_sale"
+        name="Ventes"
+        parent="tchop_et_yamo_menu"
+    />
+
+    <menuitem
+        id="tchop_et_yamo_menu_cumul"
+        name="Cumul des Ventes"
+        parent="tchop_et_yamo_menu_sale"
+        action="sale.action_quotations_with_onboarding"
+    />
+
+    <menuitem
+        id="tchop_et_yamo_menu_sale_restaurant"
+        name="Bon de Commande du Restaurant"
+        parent="tchop_et_yamo_menu_sale"
+        action="sale.action_orders"
+    />
+    
+
+</odoo>

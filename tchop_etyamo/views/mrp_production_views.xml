@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     
+    <!-- <record id="view_stock_move_raw_tree_inherit" model="ir.ui.view">
+        <field name="name">stock.move.raw.tree.inherit</field>
+        <field name="model">stock.move</field>
+        <field name="priority">1000</field>
+        <field name="inherit_id" ref="mrp.view_stock_move_raw_tree"/>
+        <field name="arch" type="xml">
+        <field name="product_uom_qty" position="replace">
+            <field name="product_uom_qty" string="Quantite Réelle"/>
+        </field>
+        <field name="reserved_availability" position="replace">
+            <field name="reserved_availability" attrs="{'invisible': [('is_done', '=', True)], 'column_invisible': [('parent.state', 'in', ('draft', 'done'))]}" string="Quantité Prévisionnelle"/>
+        </field>
+         <field name="quantity_done" position="replace">
+            <field name="quantity_done" string="Ecart" attrs="{'column_invisible': [('parent.state', '=', 'draft')]}" readonly="1"/>
+        </field>
+        </field>
+    </record> -->
+
+    
+    <!-- Top Menu Tchop et Yamo -->
+    <menuitem
+        id="tchop_et_yamo_menu"
+        name="Tchopetyamo"
+        sequence="1"
+        action="mrp.product_template_action"
+        web_icon="tchop_etyamo,static/description/tchop-et-yamo-min.png"
+    />
+
+    <menuitem
+        id="tchop_et_yamo_menu_child"
+        name="Production"
+        parent="tchop_et_yamo_menu"
+    />
+
+    <menuitem
+        id="tchop_et_yamo_menu_product"
+        name="Article"
+        parent="tchop_et_yamo_menu_child"
+        action="mrp.product_template_action"
+    />
+
+    <menuitem
+        id="tchop_et_yamo_menu_process"
+        name="Nomenclature"
+        parent="tchop_et_yamo_menu_child"
+        action="mrp.mrp_bom_form_action"
+    />
+
+    <menuitem
+        id="tchop_et_yamo_menu_manufacturing"
+        name="Ordres de Fabrication"
+        parent="tchop_et_yamo_menu_child"
+        action="mrp.mrp_production_action"
+    />
+
+    <menuitem
+        id="tchop_et_yamo_menu_deconstruction"
+        name="Commande de Deconstruction"
+        parent="tchop_et_yamo_menu_child"
+        action="mrp.mrp_unbuild"
+     />
+
+     <menuitem
+        id="tchop_et_yamo_menu_rebut"
+        name="Ordres de Mise au Rebut"
+        parent="tchop_et_yamo_menu_child"
+        action="stock.action_stock_scrap"
+     />
+    
+</odoo>

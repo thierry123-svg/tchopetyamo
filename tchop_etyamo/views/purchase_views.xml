@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Stock View Tchop et yamo -->
+    <menuitem
+        id="tchop_et_yamo_menu_purchase"
+        name="Achat"
+        parent="tchop_et_yamo_menu"
+    />
+
+    <menuitem
+        id="tchop_et_yamo_menu_demand"
+        name="Demande de Prix"
+        parent="tchop_et_yamo_menu_purchase"
+        action="purchase.purchase_rfq"
+    />
+
+    <menuitem
+        id="tchop_et_yamo_menu_restaurant"
+        name="Bon de Commande du Restaurant"
+        parent="tchop_et_yamo_menu_purchase"
+        action="purchase.purchase_form_action"
+    />
+    
+</odoo>
