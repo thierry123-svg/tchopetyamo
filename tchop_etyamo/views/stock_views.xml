@@ -16,11 +16,10 @@
     />
 
     <menuitem
-        id="tchop_et_yamo_menu_nomenclature"
-        name="Mouvement d'invenataire"
+        id="tchop_et_yamo_menu_movement"
+        name="Mouvement d'inventaire"
         parent="tchop_et_yamo_menu_stock"
         action="stock.stock_move_action"
     />
 
-    
 </odoo>
