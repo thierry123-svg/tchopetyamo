@@ -7,3 +7,4 @@ from . import account_invoice
 from . import sale_make_invoice_advance
 from . import purchase_order
 from . import report_layout
+from . import stock_ware_house
