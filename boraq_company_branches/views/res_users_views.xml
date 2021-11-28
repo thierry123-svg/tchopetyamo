@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	 <record id="view_res_users_inherit" model="ir.ui.view">
+            <field name="name">res.users.form.inherit</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//notebook[@colspan='4']/page[@name='access_rights']" position="after">
+            		 <page string="Multi Branches">
+                        <div>
+                          <h1>Multi Branchies</h1>
+                        </div>
+                        <group>
+                           <!-- <field name="branch_id"/> -->
+                           <field name="branch_ids"/>
+                        </group>
+                     </page>
+            	</xpath>
+            </field>
+          </record>
+    </data>
+</odoo>
