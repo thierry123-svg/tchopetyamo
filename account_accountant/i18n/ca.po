@@ -4,19 +4,16 @@
 # 
 # Translators:
 # Martin Trigaux, 2018
-# Quim - eccit <quim@eccit.com>, 2018
-# Manel Fernandez Ramirez <manelfera@outlook.com>, 2018
-# M Palau <mpalau@tda.ad>, 2019
-# Arnau Ros, 2019
-# Carles Antoli <carlesantoli@hotmail.com>, 2020
+# Manel Fernandez <manelfera@outlook.com>, 2019
+# Quim - eccit <quim@eccit.com>, 2019
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0+e\n"
+"Project-Id-Version: Odoo Server saas~12.2+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-15 15:18+0000\n"
-"PO-Revision-Date: 2018-08-24 11:36+0000\n"
-"Last-Translator: Carles Antoli <carlesantoli@hotmail.com>, 2020\n"
+"POT-Creation-Date: 2019-03-20 14:07+0000\n"
+"PO-Revision-Date: 2016-08-05 12:55+0000\n"
+"Last-Translator: Quim - eccit <quim@eccit.com>, 2019\n"
 "Language-Team: Catalan (https://www.transifex.com/odoo/teams/41243/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,24 +28,21 @@ msgid ""
 "specific.\" role=\"img\" aria-label=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" role=\"img\" aria-label=\"Values set here are company-"
-"specific.\" groups=\"base.group_multi_company\"/>"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
 msgid "<span class=\"o_form_label\">Fiscal Year</span>"
-msgstr "<span class=\"o_form_label\">Any fiscal</span>"
+msgstr ""
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
 msgid "<span class=\"o_form_label\">Inter-Banks Transfers</span>"
-msgstr "<span class=\"o_form_label\">Transferències interbancàries</span>"
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_chart_template
 msgid "Account Chart Template"
-msgstr "Plantilla de gràfic de comptes"
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.ui.menu,name:account_accountant.menu_account_group
@@ -58,7 +52,7 @@ msgstr "Grups de Comptes"
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__module_account_predictive_bills
 msgid "Account Predictive Bills"
-msgstr "Factures predictives del compte"
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.ui.menu,name:account_accountant.account_tag_menu
@@ -85,22 +79,22 @@ msgstr "Comptabilitat anglosaxona"
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_digest_digest__kpi_account_bank_cash
 msgid "Bank & Cash Moves"
-msgstr "Moviments bancaris i de caixa"
+msgstr ""
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_account_change_lock_date
 msgid "Cancel"
-msgstr "Cancel·lar"
+msgstr "Cancel·la"
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_change_lock_date
 msgid "Change Lock Date"
-msgstr "Canvia la data de bloqueig"
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_res_config_settings
 msgid "Config Settings"
-msgstr "Configuració"
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__create_uid
@@ -115,7 +109,7 @@ msgstr "Creat el"
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
 msgid "Define fiscal years of more or less than a year"
-msgstr "Definiu exercicis fiscals de més o menys d'un any"
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_digest_digest
@@ -132,13 +126,12 @@ msgstr "Mostrar Nom"
 #, python-format
 msgid "Do not have access, skip this data for user's digest email"
 msgstr ""
-"Sense accés, omet aquesta informació per a usuaris amb correu electrònic"
 
 #. module: account_accountant
 #: model:ir.ui.menu,name:account_accountant.menu_account_fiscal_year
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
 msgid "Fiscal Years"
-msgstr "Exercici fiscal"
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__fiscalyear_last_day
@@ -156,6 +149,14 @@ msgid "ID"
 msgstr "ID"
 
 #. module: account_accountant
+#: code:addons/account_accountant/models/res_config_settings.py:36
+#, python-format
+msgid ""
+"Incorrect fiscal year date: day is out of range for month. Month: %s; Day: "
+"%s"
+msgstr ""
+
+#. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_res_config_settings__transfer_account_id
 msgid ""
 "Intermediary account used when moving money from a liquidity account to "
@@ -167,7 +168,7 @@ msgstr ""
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_digest_digest__kpi_account_bank_cash_value
 msgid "Kpi Account Bank Cash Value"
-msgstr "Kpi Valor en efectiu del compte bancari"
+msgstr ""
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
@@ -191,12 +192,12 @@ msgstr "Última actualització el"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
-msgid "Last day of your fiscal year, for automatic opening entries"
-msgstr "Darrer dia del període fiscal, per entrades d'obertura automàtiques"
+msgid "Last day of your fiscal year"
+msgstr ""
 
 #. module: account_accountant
 #. openerp-web
-#: code:addons/account_accountant/static/src/js/tour.js:130
+#: code:addons/account_accountant/static/src/js/tour.js:110
 #, python-format
 msgid "Let's start with a new customer invoice."
 msgstr "Comencem amb una nova factura de client."
@@ -258,7 +259,7 @@ msgstr ""
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
 msgid "Predict vendor bill accounts"
-msgstr "Prediu els comptes de facturació dels venedors"
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.ui.menu,name:account_accountant.menu_product_product_categories
@@ -267,7 +268,7 @@ msgstr "Categories de producte"
 
 #. module: account_accountant
 #. openerp-web
-#: code:addons/account_accountant/static/src/js/tour.js:125
+#: code:addons/account_accountant/static/src/js/tour.js:105
 #, python-format
 msgid ""
 "Ready to discover your new favorite <b>accounting app</b>? Get started by "
@@ -292,8 +293,6 @@ msgid ""
 "The system will try to predict vendor bill accounts based on history of "
 "previous bills."
 msgstr ""
-"El sistema intentarà predir els comptes de la facturació dels venedors en "
-"funció de la història de les factures anteriors."
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__transfer_account_id
@@ -302,7 +301,7 @@ msgstr "Compte de transferències"
 
 #. module: account_accountant
 #. openerp-web
-#: code:addons/account_accountant/static/src/js/tour.js:135
+#: code:addons/account_accountant/static/src/js/tour.js:115
 #, python-format
 msgid ""
 "Use the path to quickly click back to <b>previous screens</b>, without "
@@ -313,7 +312,7 @@ msgstr ""
 
 #. module: account_accountant
 #. openerp-web
-#: code:addons/account_accountant/static/src/js/tour.js:139
+#: code:addons/account_accountant/static/src/js/tour.js:119
 #, python-format
 msgid ""
 "Your reports are available in real time. <i>No need to close a fiscal year "

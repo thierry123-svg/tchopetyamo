@@ -1,19 +1,20 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * account_accountant
+# 	* account_accountant
 # 
 # Translators:
-# Martin Trigaux, 2018
-# Denis Baranov <baranov@itlibertas.com>, 2018
+# Denis Baranov <baranov@itlibertas.com>, 2019
 # Vasiliy Korobatov <korobatov@gmail.com>, 2019
+# Vitalius Sharkhun <al070572sva@gmail.com>, 2019
+# Martin Trigaux, 2019
 # Ivan Yelizariev <yelizariev@it-projects.info>, 2019
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0+e\n"
+"Project-Id-Version: Odoo Server saas~12.5+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-15 15:18+0000\n"
-"PO-Revision-Date: 2018-08-24 11:36+0000\n"
+"POT-Creation-Date: 2019-09-23 11:38+0000\n"
+"PO-Revision-Date: 2019-08-26 09:34+0000\n"
 "Last-Translator: Ivan Yelizariev <yelizariev@it-projects.info>, 2019\n"
 "Language-Team: Russian (https://www.transifex.com/odoo/teams/41243/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +52,7 @@ msgstr "Шаблон плана счетов"
 #. module: account_accountant
 #: model:ir.ui.menu,name:account_accountant.menu_account_group
 msgid "Account Groups"
-msgstr "Группы Счетов"
+msgstr "Группы счетов"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__module_account_predictive_bills
@@ -61,7 +62,7 @@ msgstr "Прогнозирование счетов поставщиков"
 #. module: account_accountant
 #: model:ir.ui.menu,name:account_accountant.account_tag_menu
 msgid "Account Tags"
-msgstr "Тэги Счетов"
+msgstr "Теги счетов"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
@@ -81,9 +82,21 @@ msgid "Anglo-Saxon Accounting"
 msgstr "Англо-саксонской учет"
 
 #. module: account_accountant
+#: model:ir.model.fields,field_description:account_accountant.field_account_bank_statement__attachment_ids
+#: model:ir.model.fields,field_description:account_accountant.field_account_move__attachment_ids
+#: model:ir.model.fields,field_description:account_accountant.field_account_payment__attachment_ids
+msgid "Attachments"
+msgstr "Вложения"
+
+#. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_digest_digest__kpi_account_bank_cash
 msgid "Bank & Cash Moves"
 msgstr "Банковские и наличные перемещения"
+
+#. module: account_accountant
+#: model:ir.model,name:account_accountant.model_account_bank_statement
+msgid "Bank Statement"
+msgstr "Банковская выписка"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_account_change_lock_date
@@ -94,6 +107,13 @@ msgstr "Отменить"
 #: model:ir.model,name:account_accountant.model_account_change_lock_date
 msgid "Change Lock Date"
 msgstr "Изменить дату блокировки"
+
+#. module: account_accountant
+#. openerp-web
+#: code:addons/account_accountant/static/src/js/move_line_list_view.js:0
+#, python-format
+msgid "Choose a line to preview its attachments."
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_res_config_settings
@@ -112,8 +132,8 @@ msgstr "Создан"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
-msgid "Define fiscal years of more or less than a year"
-msgstr "Определите отчетные периоды более или менее года"
+msgid "Define fiscal years of more or less than one year"
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_digest_digest
@@ -126,7 +146,7 @@ msgid "Display Name"
 msgstr "Отображаемое Имя"
 
 #. module: account_accountant
-#: code:addons/account_accountant/models/digest.py:16
+#: code:addons/account_accountant/models/digest.py:0
 #, python-format
 msgid "Do not have access, skip this data for user's digest email"
 msgstr ""
@@ -154,6 +174,14 @@ msgid "ID"
 msgstr "Номер"
 
 #. module: account_accountant
+#: code:addons/account_accountant/models/res_config_settings.py:0
+#, python-format
+msgid ""
+"Incorrect fiscal year date: day is out of range for month. Month: %s; Day: "
+"%s"
+msgstr ""
+
+#. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_res_config_settings__transfer_account_id
 msgid ""
 "Intermediary account used when moving money from a liquidity account to "
@@ -161,6 +189,16 @@ msgid ""
 msgstr ""
 "Посреднический счет используется при движении денег со счета ликвидности на "
 "другой "
+
+#. module: account_accountant
+#: model:ir.model,name:account_accountant.model_account_move
+msgid "Journal Entries"
+msgstr "Записи журнала"
+
+#. module: account_accountant
+#: model:ir.model,name:account_accountant.model_account_move_line
+msgid "Journal Item"
+msgstr "Элемент журнала"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_digest_digest__kpi_account_bank_cash_value
@@ -188,13 +226,8 @@ msgid "Last Updated on"
 msgstr "Последнее обновление"
 
 #. module: account_accountant
-#: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
-msgid "Last day of your fiscal year, for automatic opening entries"
-msgstr "Последний день отчетного года для автоматически открытых записей"
-
-#. module: account_accountant
 #. openerp-web
-#: code:addons/account_accountant/static/src/js/tour.js:130
+#: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Let's start with a new customer invoice."
 msgstr "Давайте создадим счёт для клиента."
@@ -220,6 +253,19 @@ msgstr "Даты блокировки изменений"
 #: model:ir.actions.act_window,name:account_accountant.action_view_account_change_lock_date
 msgid "Lock your Fiscal Period"
 msgstr "Заблокируйте Ваш отчетный период"
+
+#. module: account_accountant
+#: model:ir.model.fields,field_description:account_accountant.field_account_move_line__move_attachment_ids
+msgid "Move Attachment"
+msgstr ""
+
+#. module: account_accountant
+#: model:ir.model.fields,help:account_accountant.field_account_change_lock_date__tax_lock_date
+#: model:ir.model.fields,help:account_accountant.field_res_config_settings__tax_lock_date
+msgid ""
+"No users can edit journal entries related to a tax prior and inclusive of "
+"this date."
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_account_change_lock_date__fiscalyear_lock_date
@@ -255,6 +301,11 @@ msgstr ""
 "внутри открытого финансового года."
 
 #. module: account_accountant
+#: model:ir.model,name:account_accountant.model_account_payment
+msgid "Payments"
+msgstr "Платежи"
+
+#. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
 msgid "Predict vendor bill accounts"
 msgstr "Прогнозирование счетов поставщиков"
@@ -266,7 +317,7 @@ msgstr "Категории продуктов"
 
 #. module: account_accountant
 #. openerp-web
-#: code:addons/account_accountant/static/src/js/tour.js:125
+#: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid ""
 "Ready to discover your new favorite <b>accounting app</b>? Get started by "
@@ -286,13 +337,24 @@ msgid "Save"
 msgstr "Сохранить"
 
 #. module: account_accountant
+#: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__tax_lock_date
+#: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__tax_lock_date
+msgid "Tax Lock Date"
+msgstr ""
+
+#. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
 msgid ""
-"The system will try to predict vendor bill accounts based on history of "
-"previous bills."
+"The system will try to predict the accounts on vendor bill lines based on "
+"history of previous bills"
 msgstr ""
-"Система попытается спрогнозировать счета поставщиков на основании истории "
-"предыдущих счетов."
+
+#. module: account_accountant
+#. openerp-web
+#: code:addons/account_accountant/static/src/js/move_line_list_view.js:0
+#, python-format
+msgid "There is no attachment linked to this move."
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__transfer_account_id
@@ -301,7 +363,7 @@ msgstr "Трансфертный Счет"
 
 #. module: account_accountant
 #. openerp-web
-#: code:addons/account_accountant/static/src/js/tour.js:135
+#: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid ""
 "Use the path to quickly click back to <b>previous screens</b>, without "
@@ -312,7 +374,7 @@ msgstr ""
 
 #. module: account_accountant
 #. openerp-web
-#: code:addons/account_accountant/static/src/js/tour.js:139
+#: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid ""
 "Your reports are available in real time. <i>No need to close a fiscal year "

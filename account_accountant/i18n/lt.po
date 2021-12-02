@@ -1,22 +1,23 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * account_accountant
+# 	* account_accountant
 # 
 # Translators:
-# Martin Trigaux, 2018
-# UAB "Draugiški sprendimai" <transifex@draugiskisprendimai.lt>, 2018
-# Silvija Butko <silvija.butko@gmail.com>, 2018
-# Paulius Sladkevičius <paulius@versada.eu>, 2018
-# digitouch UAB <digitouchagencyeur@gmail.com>, 2018
+# UAB "Draugiški sprendimai" <transifex@draugiskisprendimai.lt>, 2019
+# Silvija Butko <silvija.butko@gmail.com>, 2019
+# Paulius Sladkevičius <paulius@versada.eu>, 2019
+# digitouch UAB <digitouchagencyeur@gmail.com>, 2019
 # Linas Versada <linaskrisiukenas@gmail.com>, 2019
+# Martin Trigaux, 2019
+# vaalds <vaalds@gmail.com>, 2019
 # Andrius Meizys <a.meizys@gmail.com>, 2019
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0+e\n"
+"Project-Id-Version: Odoo Server saas~12.5+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-15 15:18+0000\n"
-"PO-Revision-Date: 2018-08-24 11:36+0000\n"
+"POT-Creation-Date: 2019-09-23 11:38+0000\n"
+"PO-Revision-Date: 2019-08-26 09:34+0000\n"
 "Last-Translator: Andrius Meizys <a.meizys@gmail.com>, 2019\n"
 "Language-Team: Lithuanian (https://www.transifex.com/odoo/teams/41243/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +55,7 @@ msgstr "Sąskaitų plano šablonas"
 #. module: account_accountant
 #: model:ir.ui.menu,name:account_accountant.menu_account_group
 msgid "Account Groups"
-msgstr "DK sąskaitų grupės"
+msgstr "Sąskaitų grupės"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__module_account_predictive_bills
@@ -84,9 +85,21 @@ msgid "Anglo-Saxon Accounting"
 msgstr "Anglo-Saxon apskaita"
 
 #. module: account_accountant
+#: model:ir.model.fields,field_description:account_accountant.field_account_bank_statement__attachment_ids
+#: model:ir.model.fields,field_description:account_accountant.field_account_move__attachment_ids
+#: model:ir.model.fields,field_description:account_accountant.field_account_payment__attachment_ids
+msgid "Attachments"
+msgstr "Prisegtukai"
+
+#. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_digest_digest__kpi_account_bank_cash
 msgid "Bank & Cash Moves"
 msgstr "Pinigų srautų ataskaita"
+
+#. module: account_accountant
+#: model:ir.model,name:account_accountant.model_account_bank_statement
+msgid "Bank Statement"
+msgstr "Banko išrašas"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_account_change_lock_date
@@ -97,6 +110,13 @@ msgstr "Atšaukti"
 #: model:ir.model,name:account_accountant.model_account_change_lock_date
 msgid "Change Lock Date"
 msgstr "Keisti užrakinimo datą"
+
+#. module: account_accountant
+#. openerp-web
+#: code:addons/account_accountant/static/src/js/move_line_list_view.js:0
+#, python-format
+msgid "Choose a line to preview its attachments."
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_res_config_settings
@@ -115,9 +135,8 @@ msgstr "Sukurta"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
-msgid "Define fiscal years of more or less than a year"
+msgid "Define fiscal years of more or less than one year"
 msgstr ""
-"Leisti nustatyti finansinius metus kaip ilgesnius ar trumpesnius nei metai"
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_digest_digest
@@ -130,7 +149,7 @@ msgid "Display Name"
 msgstr "Rodomas pavadinimas"
 
 #. module: account_accountant
-#: code:addons/account_accountant/models/digest.py:16
+#: code:addons/account_accountant/models/digest.py:0
 #, python-format
 msgid "Do not have access, skip this data for user's digest email"
 msgstr ""
@@ -146,17 +165,25 @@ msgstr "Finansiniai metai"
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__fiscalyear_last_day
 msgid "Fiscalyear Last Day"
-msgstr "Mokestinių metų paskutinė diena"
+msgstr "Finansinių metų paskutinė diena"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__fiscalyear_last_month
 msgid "Fiscalyear Last Month"
-msgstr "Mokestinių metų paskutinis mėnuo"
+msgstr "Finansinių metų paskutinis mėnuo"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__id
 msgid "ID"
 msgstr "ID"
+
+#. module: account_accountant
+#: code:addons/account_accountant/models/res_config_settings.py:0
+#, python-format
+msgid ""
+"Incorrect fiscal year date: day is out of range for month. Month: %s; Day: "
+"%s"
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_res_config_settings__transfer_account_id
@@ -166,6 +193,16 @@ msgid ""
 msgstr ""
 "Tarpinė sąskaita, kuri naudojama pinigų perkelimams iš likvidumo į kitą "
 "sąskaitą "
+
+#. module: account_accountant
+#: model:ir.model,name:account_accountant.model_account_move
+msgid "Journal Entries"
+msgstr "Žurnalo įrašai"
+
+#. module: account_accountant
+#: model:ir.model,name:account_accountant.model_account_move_line
+msgid "Journal Item"
+msgstr "Žurnalo įrašas"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_digest_digest__kpi_account_bank_cash_value
@@ -193,13 +230,8 @@ msgid "Last Updated on"
 msgstr "Paskutinį kartą atnaujinta"
 
 #. module: account_accountant
-#: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
-msgid "Last day of your fiscal year, for automatic opening entries"
-msgstr "Paskutinė finansinių metų diena, automatiniam DK įrašų sukūrimui"
-
-#. module: account_accountant
 #. openerp-web
-#: code:addons/account_accountant/static/src/js/tour.js:130
+#: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Let's start with a new customer invoice."
 msgstr "Pradėkime nuo kliento sąskaitos faktūros."
@@ -214,7 +246,7 @@ msgstr "Užrakinti datą visiems vartotojams"
 #: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__period_lock_date
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__period_lock_date
 msgid "Lock Date for Non-Advisers"
-msgstr "Užrakinti datą ne patarėjams"
+msgstr "Užrakinimo data ne patarėjams"
 
 #. module: account_accountant
 #: model:ir.ui.menu,name:account_accountant.menu_action_change_lock_date
@@ -225,6 +257,19 @@ msgstr "Užrakinti datas"
 #: model:ir.actions.act_window,name:account_accountant.action_view_account_change_lock_date
 msgid "Lock your Fiscal Period"
 msgstr "Užrakinti savo finansinį periodą"
+
+#. module: account_accountant
+#: model:ir.model.fields,field_description:account_accountant.field_account_move_line__move_attachment_ids
+msgid "Move Attachment"
+msgstr ""
+
+#. module: account_accountant
+#: model:ir.model.fields,help:account_accountant.field_account_change_lock_date__tax_lock_date
+#: model:ir.model.fields,help:account_accountant.field_res_config_settings__tax_lock_date
+msgid ""
+"No users can edit journal entries related to a tax prior and inclusive of "
+"this date."
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_account_change_lock_date__fiscalyear_lock_date
@@ -259,6 +304,11 @@ msgstr ""
 "intervale, pavyzdžiui."
 
 #. module: account_accountant
+#: model:ir.model,name:account_accountant.model_account_payment
+msgid "Payments"
+msgstr "Mokėjimai"
+
+#. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
 msgid "Predict vendor bill accounts"
 msgstr ""
@@ -270,7 +320,7 @@ msgstr "Produktų kategorijos"
 
 #. module: account_accountant
 #. openerp-web
-#: code:addons/account_accountant/static/src/js/tour.js:125
+#: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid ""
 "Ready to discover your new favorite <b>accounting app</b>? Get started by "
@@ -290,10 +340,23 @@ msgid "Save"
 msgstr "Išsaugoti"
 
 #. module: account_accountant
+#: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__tax_lock_date
+#: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__tax_lock_date
+msgid "Tax Lock Date"
+msgstr ""
+
+#. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
 msgid ""
-"The system will try to predict vendor bill accounts based on history of "
-"previous bills."
+"The system will try to predict the accounts on vendor bill lines based on "
+"history of previous bills"
+msgstr ""
+
+#. module: account_accountant
+#. openerp-web
+#: code:addons/account_accountant/static/src/js/move_line_list_view.js:0
+#, python-format
+msgid "There is no attachment linked to this move."
 msgstr ""
 
 #. module: account_accountant
@@ -303,7 +366,7 @@ msgstr "Perkėlimo sąskaita"
 
 #. module: account_accountant
 #. openerp-web
-#: code:addons/account_accountant/static/src/js/tour.js:135
+#: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid ""
 "Use the path to quickly click back to <b>previous screens</b>, without "
@@ -314,7 +377,7 @@ msgstr ""
 
 #. module: account_accountant
 #. openerp-web
-#: code:addons/account_accountant/static/src/js/tour.js:139
+#: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid ""
 "Your reports are available in real time. <i>No need to close a fiscal year "

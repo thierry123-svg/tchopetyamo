@@ -1,22 +1,24 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * account_accountant
+# 	* account_accountant
 # 
 # Translators:
-# amrnegm <amrnegm.01@gmail.com>, 2018
-# Martin Trigaux, 2018
-# Osama Ahmaro <osamaahmaro@gmail.com>, 2018
-# Shaima Safar <shaima.safar@open-inside.com>, 2018
-# Malek Gifaeri <Malek.gifaeri@gmail.com>, 2018
-# Ali Alrehawi <alrehawi@hotmail.com>, 2018
+# amrnegm <amrnegm.01@gmail.com>, 2019
+# Martin Trigaux, 2019
+# Osama Ahmaro <osamaahmaro@gmail.com>, 2019
+# Ali Alrehawi <alrehawi@hotmail.com>, 2019
+# Shaima Safar <shaima.safar@open-inside.com>, 2019
+# Malek Gifaeri <Malek.gifaeri@gmail.com>, 2019
+# Mustafa J. Kadhem <safi2266@gmail.com>, 2019
+# Nisrine Tagri <nta@odoo.com>, 2019
 # Mustafa Rawi <mustafa@cubexco.com>, 2019
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0+e\n"
+"Project-Id-Version: Odoo Server saas~12.5+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-15 15:18+0000\n"
-"PO-Revision-Date: 2018-08-24 11:36+0000\n"
+"POT-Creation-Date: 2019-09-23 11:38+0000\n"
+"PO-Revision-Date: 2019-08-26 09:34+0000\n"
 "Last-Translator: Mustafa Rawi <mustafa@cubexco.com>, 2019\n"
 "Language-Team: Arabic (https://www.transifex.com/odoo/teams/41243/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -32,8 +34,8 @@ msgid ""
 "specific.\" role=\"img\" aria-label=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"القيم المحددة هنا خاصة "
-"بالمؤسسة.\" role=\"img\" aria-label=\"القيم المحددة هنا خاصة بالمؤسسة.\" "
+"<span class=\"fa fa-lg fa-building-o\" title=\"القيم المحددة هنا تُحدد حسب "
+"المؤسسة.\" role=\"img\" aria-label=\"القيم المحددة هنا تُحدد حسب المؤسسة.\" "
 "groups=\"base.group_multi_company\"/>"
 
 #. module: account_accountant
@@ -49,7 +51,7 @@ msgstr "<span class=\"o_form_label\">التحويلات بين البنوك</spa
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_chart_template
 msgid "Account Chart Template"
-msgstr "قالب الدليل المحاسبي"
+msgstr "قالب مخطط الحساب"
 
 #. module: account_accountant
 #: model:ir.ui.menu,name:account_accountant.menu_account_group
@@ -76,7 +78,7 @@ msgstr "الحساب الوسيط عند التحويل بين الحسابات 
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_partner_view_form
 msgid "Accounting"
-msgstr "الحسابات"
+msgstr "المحاسبة"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__use_anglo_saxon
@@ -84,9 +86,21 @@ msgid "Anglo-Saxon Accounting"
 msgstr "المحاسبة الأنجلو-ساكسونية"
 
 #. module: account_accountant
+#: model:ir.model.fields,field_description:account_accountant.field_account_bank_statement__attachment_ids
+#: model:ir.model.fields,field_description:account_accountant.field_account_move__attachment_ids
+#: model:ir.model.fields,field_description:account_accountant.field_account_payment__attachment_ids
+msgid "Attachments"
+msgstr "المرفقات"
+
+#. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_digest_digest__kpi_account_bank_cash
 msgid "Bank & Cash Moves"
 msgstr "حركات النقدية والبنوك"
+
+#. module: account_accountant
+#: model:ir.model,name:account_accountant.model_account_bank_statement
+msgid "Bank Statement"
+msgstr "كشف الحساب البنكي"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_account_change_lock_date
@@ -97,6 +111,13 @@ msgstr "إلغاء"
 #: model:ir.model,name:account_accountant.model_account_change_lock_date
 msgid "Change Lock Date"
 msgstr "تغيير تاريخ الإقفال"
+
+#. module: account_accountant
+#. openerp-web
+#: code:addons/account_accountant/static/src/js/move_line_list_view.js:0
+#, python-format
+msgid "Choose a line to preview its attachments."
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_res_config_settings
@@ -115,8 +136,8 @@ msgstr "أنشئ في"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
-msgid "Define fiscal years of more or less than a year"
-msgstr "السماح بإنشاء سنوات مالية أطول أو أقصر من عام"
+msgid "Define fiscal years of more or less than one year"
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_digest_digest
@@ -129,7 +150,7 @@ msgid "Display Name"
 msgstr "الاسم المعروض"
 
 #. module: account_accountant
-#: code:addons/account_accountant/models/digest.py:16
+#: code:addons/account_accountant/models/digest.py:0
 #, python-format
 msgid "Do not have access, skip this data for user's digest email"
 msgstr "لا تملك صلاحيات الوصول. تخطِ هذه البيانات لبريد الملخص للمستخدم."
@@ -153,14 +174,32 @@ msgstr "آخر شهور السنة المالية"
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__id
 msgid "ID"
-msgstr "المعرف"
+msgstr "المُعرف"
+
+#. module: account_accountant
+#: code:addons/account_accountant/models/res_config_settings.py:0
+#, python-format
+msgid ""
+"Incorrect fiscal year date: day is out of range for month. Month: %s; Day: "
+"%s"
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_res_config_settings__transfer_account_id
 msgid ""
 "Intermediary account used when moving money from a liquidity account to "
 "another"
-msgstr "حساب وسيط يستخدم عند تحريك الأموال من حساب سيولة نقدية إلى آخر"
+msgstr "يُستخدم حساب وسيط عند نقل الأموال من حساب جاري إلى حساب آخر"
+
+#. module: account_accountant
+#: model:ir.model,name:account_accountant.model_account_move
+msgid "Journal Entries"
+msgstr "القيود اليومية"
+
+#. module: account_accountant
+#: model:ir.model,name:account_accountant.model_account_move_line
+msgid "Journal Item"
+msgstr "عنصر اليومية"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_digest_digest__kpi_account_bank_cash_value
@@ -188,14 +227,8 @@ msgid "Last Updated on"
 msgstr "آخر تحديث في"
 
 #. module: account_accountant
-#: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
-msgid "Last day of your fiscal year, for automatic opening entries"
-msgstr ""
-"اليوم الأخير من السنة المالية، لأغراض إنشاء القيود الافتتاحية تلقائياً"
-
-#. module: account_accountant
 #. openerp-web
-#: code:addons/account_accountant/static/src/js/tour.js:130
+#: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Let's start with a new customer invoice."
 msgstr "لنبدأ بفاتورة عميل جديدة."
@@ -210,7 +243,7 @@ msgstr "تاريخ الإقفال لكافة المستخدمين"
 #: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__period_lock_date
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__period_lock_date
 msgid "Lock Date for Non-Advisers"
-msgstr "تاريخ الإقفال لغير الاستشاريين"
+msgstr "تاريخ القفل لغير الاستشاريين"
 
 #. module: account_accountant
 #: model:ir.ui.menu,name:account_accountant.menu_action_change_lock_date
@@ -223,14 +256,27 @@ msgid "Lock your Fiscal Period"
 msgstr "إقفال الفترة المالية"
 
 #. module: account_accountant
+#: model:ir.model.fields,field_description:account_accountant.field_account_move_line__move_attachment_ids
+msgid "Move Attachment"
+msgstr ""
+
+#. module: account_accountant
+#: model:ir.model.fields,help:account_accountant.field_account_change_lock_date__tax_lock_date
+#: model:ir.model.fields,help:account_accountant.field_res_config_settings__tax_lock_date
+msgid ""
+"No users can edit journal entries related to a tax prior and inclusive of "
+"this date."
+msgstr ""
+
+#. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_account_change_lock_date__fiscalyear_lock_date
 #: model:ir.model.fields,help:account_accountant.field_res_config_settings__fiscalyear_lock_date
 msgid ""
 "No users, including Advisers, can edit accounts prior to and inclusive of "
 "this date. Use it for fiscal year locking for example."
 msgstr ""
-"لا يمكن للمستخدمين, بما في ذلك الاستشاريين, إجراء حركات محاسبية قبل وأثناء "
-"هذا التاريخ. استخدمه على سبيل المثال لإغلاق سنة مالية."
+"لا يمكن لأي من المستخدمين, بما في ذلك الاستشاريين, تعديل حسابات سابقة قبل "
+"وأثناء هذا التاريخ. استخدمه مثلًا لإغلاق سنة مالية."
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_res_config_settings__period_lock_date
@@ -239,9 +285,8 @@ msgid ""
 "of this date. Use it for period locking inside an open fiscal year, for "
 "example."
 msgstr ""
-"يمكن فقط للمستخدمين من ذوي صلاحية 'الاستشاريين' إجراء حركات أو تعديلها على "
-"حسابات خلال وحتى هذا التاريخ. استخدمه على سبيل المثال لإغلاق فترة مالية خلال"
-" سنة مالية مفتوحة."
+"يمكن للمستخدمين المالكين صلاحية 'المستشارين' فقط التعديل على حسابات سابقة "
+"قبل وحتى هذا التاريخ. استخدمه مثلًا لإغلاق فترة داخل سنة مالية مفتوحة."
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_account_change_lock_date__period_lock_date
@@ -252,6 +297,11 @@ msgid ""
 msgstr ""
 "يمكن فقط للمستخدمين المالكين صلاحية الاستشاريين التعديل على حسابات سابقة قبل"
 " وحتى هذا التاريخ. استخدمه مثلًا لإغلاق فترة داخل سنة مالية مفتوحة."
+
+#. module: account_accountant
+#: model:ir.model,name:account_accountant.model_account_payment
+msgid "Payments"
+msgstr "المدفوعات"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
@@ -265,7 +315,7 @@ msgstr "فئات المنتجات"
 
 #. module: account_accountant
 #. openerp-web
-#: code:addons/account_accountant/static/src/js/tour.js:125
+#: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid ""
 "Ready to discover your new favorite <b>accounting app</b>? Get started by "
@@ -283,12 +333,24 @@ msgid "Save"
 msgstr "حفظ"
 
 #. module: account_accountant
+#: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__tax_lock_date
+#: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__tax_lock_date
+msgid "Tax Lock Date"
+msgstr "تاريخ إغلاق الضريبة"
+
+#. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
 msgid ""
-"The system will try to predict vendor bill accounts based on history of "
-"previous bills."
+"The system will try to predict the accounts on vendor bill lines based on "
+"history of previous bills"
 msgstr ""
-"سيحاول النظام توقع حسابات فواتير مورديك بناءً على سجل الفواتير السابقة."
+
+#. module: account_accountant
+#. openerp-web
+#: code:addons/account_accountant/static/src/js/move_line_list_view.js:0
+#, python-format
+msgid "There is no attachment linked to this move."
+msgstr ""
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__transfer_account_id
@@ -297,7 +359,7 @@ msgstr "حساب التحويلات الوسيط"
 
 #. module: account_accountant
 #. openerp-web
-#: code:addons/account_accountant/static/src/js/tour.js:135
+#: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid ""
 "Use the path to quickly click back to <b>previous screens</b>, without "
@@ -308,7 +370,7 @@ msgstr ""
 
 #. module: account_accountant
 #. openerp-web
-#: code:addons/account_accountant/static/src/js/tour.js:139
+#: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid ""
 "Your reports are available in real time. <i>No need to close a fiscal year "
